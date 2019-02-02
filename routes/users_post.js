@@ -32,8 +32,8 @@ const validatePostBody = (req, res, next) => {
     day: Joi.number().integer(),
     fish_pic: Joi.string().allow(''),
     comments: Joi.string().allow(''),
-    lat: Joi.number().integer().required(),
-    lng: Joi.number().integer().required()
+    lat: Joi.number().Joi.number().precision(10).required(),
+    lng: Joi.number().Joi.number().precision(10).required()
   })
 
   const { error } = Joi.validate(req.body, postSchema)
@@ -59,8 +59,8 @@ const buildPatchReq = (req, res, next) => {
     day: Joi.number().integer(),
     fish_pic: Joi.string().allow(''),
     comments: Joi.string().allow(''),
-    lat: Joi.number().integer().required(),
-    lng: Joi.number().integer().required()
+    lat: Joi.number().Joi.number().precision(10).required(),
+    lng: Joi.number().Joi.number().precision(10).required()
   })
 
   const { error } = Joi.validate(req.body, patchSchema)
