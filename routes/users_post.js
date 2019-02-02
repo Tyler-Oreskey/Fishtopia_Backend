@@ -30,8 +30,8 @@ const validatePostBody = (req, res, next) => {
     wet_size: Joi.number().integer(),
     month: Joi.string().required(),
     day: Joi.number().integer(),
-    fish_pic: string(),
-    comments: string(),
+    fish_pic: Joi.string(),
+    comments: Joi.string(),
     lat: Joi.number().integer().required(),
     lng: Joi.number().integer().required()
   })
@@ -57,8 +57,8 @@ const buildPatchReq = (req, res, next) => {
     wet_size: Joi.number().integer(),
     month: Joi.string().required(),
     day: Joi.number().integer(),
-    fish_pic: string(),
-    comments: string(),
+    fish_pic: Joi.string(),
+    comments: Joi.string(),
     lat: Joi.number().integer().required(),
     lng: Joi.number().integer().required()
   })
