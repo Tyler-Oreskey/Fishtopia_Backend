@@ -56,7 +56,7 @@ exports.seed = function(knex, Promise) {
         {id: 50, name: 'Golden Stone'},
         {id: 51, name: 'Sow Bug'},
         {id: 52, name: 'Brassie'},
-        {id: 52, name: 'None'}
+        {id: 53, name: 'None'}
       ])
       .then(function() {
         // Moves id column (PK) auto-incrementer to correct value after inserts
