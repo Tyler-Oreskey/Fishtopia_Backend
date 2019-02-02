@@ -21,6 +21,7 @@ const validateUserID = (req, res, next) => {
 const validatePostBody = (req, res, next) => {
   const postSchema = Joi.object().keys({
     users_id: Joi.number().integer().required(),
+    name: Joi.string().required(),
     fish_id: Joi.number().integer().required(),
     fishing_type: Joi.string().required(),
     dry_fly: Joi.string().required(),
@@ -47,6 +48,7 @@ const validatePostBody = (req, res, next) => {
 const buildPatchReq = (req, res, next) => {
   const patchSchema = Joi.object().keys({
     users_id: Joi.number().integer().required(),
+    name: Joi.string().required(),
     fish_id: Joi.number().integer().required(),
     fishing_type: Joi.string().required(),
     dry_fly: Joi.string().required(),
@@ -66,7 +68,7 @@ const buildPatchReq = (req, res, next) => {
     return res.status(400).json({ "PATCH Schema Error": { message: error.details[0].message } })
   }
 
-  const allowedPatchKeys = [users_id, fish_id, fishing_type, dry_fly, dry_size, wet_fly, wet_size, month, day, fish_pic, comments, lat, lng]
+  const allowedPatchKeys = [users_id, name, fish_id, fishing_type, dry_fly, dry_size, wet_fly, wet_size, month, day, fish_pic, comments, lat, lng]
 
   // Constructs the patch request object
   let patchReq = {}
@@ -99,9 +101,9 @@ router.get('/:id', validateUserID, (req, res, next) => {
 
 /* POST new users_post record */
 router.post('/', validatePostBody, (req, res, next) => {
-  const {users_id, fish_id, fishing_type, dry_fly, dry_size, wet_fly, wet_size, month, day, fish_pic, comments, lat, lng} = req.body
+  const {users_id, name, fish_id, fishing_type, dry_fly, dry_size, wet_fly, wet_size, month, day, fish_pic, comments, lat, lng} = req.body
 
-  knex('users_post').insert({users_id, fish_id, fishing_type, dry_fly, dry_size, wet_fly, wet_size, month, day, fish_pic, comments, lat, lng}).returning('*').then(([data]) => res.status(201).json(data)).catch(err => next(err))
+  knex('users_post').insert({users_id, name, fish_id, fishing_type, dry_fly, dry_size, wet_fly, wet_size, month, day, fish_pic, comments, lat, lng}).returning('*').then(([data]) => res.status(201).json(data)).catch(err => next(err))
 })
 
 /* PATCH specified users_post record */
