@@ -20,7 +20,6 @@ exports.up = function(knex, Promise) {
     table.string('month', 255).notNullable().defaultTo('')
     table.integer('day').notNullable().defaultTo(0)
 
-    table.text('fish_pic').notNullable().defaultTo('')
     table.text('comments').notNullable().defaultTo('')
 
     table.decimal('lat').notNullable()

@@ -31,7 +31,6 @@ const validatePostBody = (req, res, next) => {
     wet_size: Joi.number().integer(),
     month: Joi.string().required(),
     day: Joi.number().integer(),
-    fish_pic: Joi.string().allow(''),
     comments: Joi.string().allow(''),
     lat: Joi.number().precision(10).required(),
     lng: Joi.number().precision(10).required()
@@ -59,7 +58,6 @@ const buildPatchReq = (req, res, next) => {
     wet_size: Joi.number().integer(),
     month: Joi.string().required(),
     day: Joi.number().integer(),
-    fish_pic: Joi.string().allow(''),
     comments: Joi.string().allow(''),
     lat: Joi.number().precision(10).required(),
     lng: Joi.number().precision(10).required()
@@ -70,7 +68,7 @@ const buildPatchReq = (req, res, next) => {
     return res.status(400).json({ "PATCH Schema Error": { message: error.details[0].message } })
   }
 
-  const allowedPatchKeys = [users_id, name, fish_id, fish_size, fishing_type, dry_fly, dry_size, wet_fly, wet_size, month, day, fish_pic, comments, lat, lng]
+  const allowedPatchKeys = [users_id, name, fish_id, fish_size, fishing_type, dry_fly, dry_size, wet_fly, wet_size, month, day, comments, lat, lng]
 
   // Constructs the patch request object
   let patchReq = {}
@@ -103,9 +101,9 @@ router.get('/:id', validateUserID, (req, res, next) => {
 
 /* POST new users_post record */
 router.post('/', validatePostBody, (req, res, next) => {
-  const {users_id, name, fish_id, fish_size, fishing_type, dry_fly, dry_size, wet_fly, wet_size, month, day, fish_pic, comments, lat, lng} = req.body
+  const {users_id, name, fish_id, fish_size, fishing_type, dry_fly, dry_size, wet_fly, wet_size, month, day, comments, lat, lng} = req.body
 
-  knex('users_post').insert({users_id, name, fish_id, fish_size, fishing_type, dry_fly, dry_size, wet_fly, wet_size, month, day, fish_pic, comments, lat, lng}).returning('*').then(([data]) => res.status(201).json(data)).catch(err => next(err))
+  knex('users_post').insert({users_id, name, fish_id, fish_size, fishing_type, dry_fly, dry_size, wet_fly, wet_size, month, day, comments, lat, lng}).returning('*').then(([data]) => res.status(201).json(data)).catch(err => next(err))
 })
 
 /* PATCH specified users_post record */
