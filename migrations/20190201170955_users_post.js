@@ -9,6 +9,7 @@ exports.up = function(knex, Promise) {
     table.string('name', 255).notNullable().defaultTo('')
 
     table.integer('fish_id').notNullable()
+    table.string('fish_name', 255).notNullable().defaultTo('')
     table.integer('fish_size').notNullable()
     table.string('fishing_type', 255).notNullable().defaultTo('')
 
