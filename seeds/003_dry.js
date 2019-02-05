@@ -5,8 +5,8 @@ exports.seed = function(knex, Promise) {
       // Inserts seed entries
       return knex('dry').insert([
         {id: 1, name: 'None'},
-        {id: 2, name: 'Parachute Adams'},
-        {id: 3, name: 'Elk Hair Caddis'},
+        {id: 2, name: 'Elk Hair Caddis'},
+        {id: 3, name: 'Parachute Adams'},
         {id: 4, name: 'Rainy’s X-Fly Parachute BWO'},
         {id: 5, name: 'Sulphur Parachute'},
         {id: 6, name: 'Stimulator'},
